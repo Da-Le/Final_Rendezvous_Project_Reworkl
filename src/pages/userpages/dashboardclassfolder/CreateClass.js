@@ -17,7 +17,7 @@ import { db } from '../../../utils/firebase';
 import { setDoc, doc } from '@firebase/firestore';
 
 
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const style = {
     formContainer: {

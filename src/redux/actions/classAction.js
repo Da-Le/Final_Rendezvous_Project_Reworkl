@@ -1,21 +1,24 @@
 import * as actionTypes from '../types';
 
-const classroomSuccess = (classdata) => ({
-    type: actionTypes.SET_CLASSROOM,
-    payload: classdata
-});
-
-
-
-export const classroomData = (classdata, history) => (dispatch) => {
+export const toggleClassroomData = (classData, history) => async (dispatch) => {
     try {
-        dispatch(classroomSuccess(classdata));
-        history.push(`/classannouncement/${classdata.id}`)
+        localStorage.setItem('classdata' , JSON.stringify(classData));
+        dispatch({ type: actionTypes.SET_CLASSROOM, payload: classData });
+        history.push(`/classannouncement/${classData.id}`)
     } catch (err) {
-        console.error(err)
+        console.error(err);
     }
-}
+};
 
+export const getClassroomData = () => async (dispatch) => {
+    try {
+        const classData = 
+        localStorage.getItem('classdata');
+        dispatch({ type: actionTypes.SET_CLASSROOM, payload: JSON.parse(classData)});
+    } catch (err) {
+        console.error(err);
+    }
+};
 
 
 

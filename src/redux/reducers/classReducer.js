@@ -13,9 +13,7 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 classData: action.payload
-     
             };
-
         default:
             return state;
     }

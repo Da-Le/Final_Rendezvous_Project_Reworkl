@@ -16,6 +16,7 @@ import { setUser } from '../redux/actions/userAction';
 import Login from '../pages/nonuserpages/Login';
 import Register from '../pages/nonuserpages/Register';
 import Home from '../pages/nonuserpages/Home';
+import Forgot from '../pages/nonuserpages/Forgot';
 
 //userhomepage
 import DashboardUser from '../pages/userpages/dashboarduser/DashboarduUser';
@@ -36,17 +37,19 @@ import ClassQuizExam from '../pages/userpages/mainclassroom/classlinks/classquiz
 import ClassCreateQuizExam from '../pages/userpages/mainclassroom/classlinks/classquizexam/ClassCreateQuizExam';
 import ClassAssignQuizExam from '../pages/userpages/mainclassroom/classlinks/classquizexam/ClassAssignQuizExam';
 import ClassSetting from '../pages/userpages/mainclassroom/classlinks/classsetting/ClassSetting';
+import { toggleClassroomData, getClassroomData } from '../redux/actions/classAction';
 
 export default function RouterComponent() {
 
     const dispatch = useDispatch();
 
-    const { user } = useSelector((state) => state);
+    const { user, classUser } = useSelector((state) => state);
 
     useEffect(() => {
         auth.onAuthStateChanged((authUser) => {
             if (authUser) {
                 dispatch(setUser(authUser));
+                dispatch(getClassroomData());
             } else {
                 dispatch(setUser(null));
             }
@@ -54,6 +57,8 @@ export default function RouterComponent() {
     }, [dispatch])
 
     console.log(user);
+
+    console.log(classUser.classData)
 
     const THEME = createTheme(theme);
 
@@ -65,6 +70,7 @@ export default function RouterComponent() {
                     <Route component={Home} path="/" exact />
                     <Route component={Login} path="/login" exact />
                     <Route component={Register} path="/register" exact />
+                    <Route component={Forgot} path="/forgot" exact />
 
                     {/* userhomepage */}
                     <Route component={DashboardUser} path="/dashboarduser" exact />

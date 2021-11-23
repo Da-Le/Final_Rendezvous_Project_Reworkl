@@ -9,6 +9,8 @@ import {
 
 import { Link } from 'react-router-dom';
 
+import { useSelector } from 'react-redux';
+
 import Classdrawer from '../../classdrawer/ClassDrawer';
 
 const style = {
@@ -21,12 +23,15 @@ const style = {
 }
 
 export default function ClassActivity() {
+
+    const { classUser } = useSelector((state) => state);
+
     return (
         <Classdrawer>
             <Box component={Grid} container justifyContent="flex-start" sx={{ padding: 5 }}>
                 <Grid container justifyContent="flex-start" alignItems="center">
                     <Grid container sx={{ marginTop: 5 }}>
-                        <Link style={{ textDecoration: 'none', color: 'black' }} to='/classcreateactivity'>
+                        <Link style={{ textDecoration: 'none', color: 'black' }} to={`/classcreateactivity/${classUser.classData.classCode}`}>
                             <Button
                                 variant="contained"
                                 color="primary"

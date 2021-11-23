@@ -10,10 +10,9 @@ import {
     useTheme,
     Menu,
     MenuItem,
-    Button
+    Button,
+    LinearProgress
 } from '@mui/material';
-
-import { Link } from "react-router-dom";
 
 import Clipdrawer from '../dashboardcomponent/ClipDrawer';
 
@@ -29,7 +28,7 @@ import { db } from '../../../utils/firebase';
 import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
 
-import { classroomData } from '../../../redux/actions/classAction'
+import { classroomData, getClassroomData, toggleClassroomData } from '../../../redux/actions/classAction'
 
 const drawerWidth = 80;
 
@@ -151,6 +150,8 @@ export default function DashboardClass() {
 
     const dispatch = useDispatch();
 
+    const [loading, setLoading] = useState(true)
+
     //BreakPoint
     const theme = useTheme();
 
@@ -182,17 +183,15 @@ export default function DashboardClass() {
     useEffect(
         () =>
             onSnapshot(collection(db, "createclass"), (snapshot) => {
-                setClassroom(snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })))
+                setClassroom(snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+                setLoading(false);
             }
             ),
         []
     );
 
-
     const classBtn = (classdata) => {
-
-        dispatch(classroomData(classdata, history));
-        
+        dispatch(toggleClassroomData(classdata, history));
     }
 
     return (
@@ -225,6 +224,13 @@ export default function DashboardClass() {
                                 </>
                             }
                         </Toolbar>
+                        {loading ?
+                            (
+                                <LinearProgress />
+                            ) :
+                            (
+                                ""
+                            )}
                     </AppBar>
                     <Box component={Grid} container justifyContent="center" sx={{ paddingTop: 5 }}>
                         <Grid container sx={style.gridcontainer}>

@@ -6,6 +6,7 @@ import {
     Toolbar,
     Typography,
     Grid,
+    LinearProgress
 } from '@mui/material';
 
 import Clipdrawer from '../dashboardcomponent/ClipDrawer';
@@ -74,12 +75,15 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export default function DashboardFiles() {
 
 
-    const [users, setUsers] = useState([{ email: "Loading..." }]);
+    const [users, setUsers] = useState([]);
+
+    const [loading, setLoading] = useState(true)
 
     useEffect(
         () =>
             onSnapshot(collection(db, "users"), (snapshot) => {
                 setUsers(snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })))
+                setLoading(false)
             }
             ),
         []
@@ -100,32 +104,46 @@ export default function DashboardFiles() {
                                 Recent Files
                             </Typography>
                         </Toolbar>
+                        {loading ?
+                            (
+                                <LinearProgress  />
+                            ) :
+                            (
+                                ""
+                            )}
                     </AppBar>
                     <Box component={Grid} container justifyContent="flex-start" sx={{ paddingTop: 10 }}>
                         <Box component={Grid} container justifyContent="center" sx={{ marginBottom: 2 }}>
                             <Typography variant="h4"> Files </Typography>
                         </Box>
                         <TableContainer component={Paper} justifyContent="center">
-                            <Table sx={{ minWidth: 300 }} aria-label="customized table">
-                                <TableHead>
-                                    <TableRow>
-                                        <StyledTableCell>ID</StyledTableCell>
-                                        <StyledTableCell align="right">File Name</StyledTableCell>
-                                        <StyledTableCell align="right">Date</StyledTableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {users.map((user) => (
-                                        <StyledTableRow key={user.id}>
-                                            <StyledTableCell component="th" scope="row">
-                                                {user.id}
-                                            </StyledTableCell>
-                                            <StyledTableCell align="right">{user.displayName}</StyledTableCell>
-                                            <StyledTableCell align="right">{user.email}</StyledTableCell>
-                                        </StyledTableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
+                            {loading ?
+                                (
+                                    ""
+                                ) :
+                                (
+                                    <Table sx={{ minWidth: 300 }} aria-label="customized table">
+                                        <TableHead>
+                                            <TableRow>
+                                                <StyledTableCell>ID</StyledTableCell>
+                                                <StyledTableCell align="right">File Name</StyledTableCell>
+                                                <StyledTableCell align="right">Date</StyledTableCell>
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                            {users.map((user) => (
+                                                <StyledTableRow key={user.id}>
+                                                    <StyledTableCell component="th" scope="row">
+                                                        {user.id}
+                                                    </StyledTableCell>
+                                                    <StyledTableCell align="right">{user.displayName}</StyledTableCell>
+                                                    <StyledTableCell align="right">{user.email}</StyledTableCell>
+                                                </StyledTableRow>
+                                            ))}
+                                        </TableBody>
+                                    </Table>
+                                )
+                            }
                         </TableContainer>
                     </Box>
 

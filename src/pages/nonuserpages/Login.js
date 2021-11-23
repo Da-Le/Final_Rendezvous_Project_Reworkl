@@ -136,19 +136,21 @@ export default function Login() {
                 // ...
             }).catch((error) => {
                 // Handle Errors here.
-                const errorCode = error.code;
                 const errorMessage = error.message;
+                alert(errorMessage);
                 // The email of the user's account used.
                 const email = error.email;
+                alert(email);
                 // The AuthCredential type that was used.
                 const credential = GoogleAuthProvider.credentialFromError(error);
                 // ...
+                alert(credential);
             });
     }
 
     return (
         <Box sx={style.root}>
-            <Grid container justifyContent="center">
+            <Grid container justifyContent="center">    
                 <Box sx={style.section1} boxShadow={12}>
                     <Typography variant="subtitle1" color="textPrimary" sx={style.headingStyle1}>
                         Sign in to your Rendezvous Account
@@ -220,7 +222,7 @@ export default function Login() {
                         />
                     </FormControl>
                     <Grid container justifyContent='flex-end'>
-                        <Link to="/" style={{ textDecoration: 'none' }}>
+                        <Link to="/forgot" style={{ textDecoration: 'none' }}>
                             <Typography
                                 sx={style.forgotStyle}
                             >

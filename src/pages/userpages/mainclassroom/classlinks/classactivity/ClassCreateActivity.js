@@ -10,6 +10,8 @@ import {
 
 import { Link } from 'react-router-dom';
 
+import { useSelector } from 'react-redux';
+
 import Classdrawer from '../../classdrawer/ClassDrawer';
 
 const style = {
@@ -33,6 +35,9 @@ const style = {
 }
 
 export default function ClassCreateActivity() {
+
+    const { classUser } = useSelector((state) => state);
+
     return (
         <Classdrawer>
             <Box component={Grid} container justifyContent="flex-start" sx={{ padding: 1 }}>
@@ -97,7 +102,7 @@ export default function ClassCreateActivity() {
                             </Grid>
                         </Grid>
                         <Grid container justifyContent="flex-start" sx={{ padding: 2 }}>
-                            <Link style={{ textDecoration: 'none', color: 'black' }} to='/classassignactivity'>
+                            <Link style={{ textDecoration: 'none', color: 'black' }} to={`/classassignactivity/${classUser.classData.classCode}`}>
                                 <Button
                                     variant="contained"
                                     color="primary"

@@ -13,4 +13,5 @@ export const LOGOUT_FAIL = "LOGOUT_FAIL";
 export const SET_USER = "SET_USER";
 
 export const SET_CLASSROOM = "SET_CLASSROOM"
+export const SET_CLASSROOM_DATA = "SET_CLASSROOM_DATA"
 

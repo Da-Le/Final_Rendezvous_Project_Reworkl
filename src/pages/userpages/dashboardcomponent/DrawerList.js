@@ -12,7 +12,6 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ClassIcon from '@mui/icons-material/Class';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import BookIcon from '@mui/icons-material/Book';
 import StorageIcon from '@mui/icons-material/Storage';
 import InfoIcon from '@mui/icons-material/Info';
 import Logo from '../../../assets/img/jpg/RendezvousNewLogo.jpg'

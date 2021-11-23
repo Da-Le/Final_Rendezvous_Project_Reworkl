@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -16,6 +16,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import { LinearProgress } from '@mui/material';
 import { useSelector } from "react-redux";
 
 //React Router Dom
@@ -102,6 +103,8 @@ export default function MiniDrawer({ children }) {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
 
+    const [loading, setLoading] = useState(true)
+
     const { classUser } = useSelector((state) => state);
 
     const handleDrawerOpen = () => {
@@ -111,6 +114,12 @@ export default function MiniDrawer({ children }) {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+
+    useEffect(() => {
+        if (classUser) {
+            setLoading(false);
+        }
+    }, [])
 
     console.log(classUser);
 
@@ -137,6 +146,13 @@ export default function MiniDrawer({ children }) {
                         </Typography>
                     </Grid>
                 </Toolbar>
+                {loading ?
+                    (
+                        <LinearProgress />
+                    ) :
+                    (
+                        ""
+                    )}
             </AppBar>
             <Drawer variant="permanent" open={open}>
                 <DrawerHeader>

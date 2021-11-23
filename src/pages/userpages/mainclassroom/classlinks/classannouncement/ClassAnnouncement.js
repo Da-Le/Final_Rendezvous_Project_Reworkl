@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {
     Typography,
@@ -6,10 +6,17 @@ import {
     Grid,
     Avatar,
     TextField,
-    Button
+    Button,
+    IconButton
 } from '@mui/material';
 
 import Classdrawer from '../../classdrawer/ClassDrawer';
+
+import AddToDriveIcon from '@mui/icons-material/AddToDrive';
+import FileUploadIcon from '@mui/icons-material/FileUpload';
+import InsertLinkIcon from '@mui/icons-material/InsertLink';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import { getClassroomData } from '../../../../../redux/actions/classAction';
 
 const style = {
     gridcontainer: {
@@ -24,8 +31,13 @@ const style = {
         cursor: "pointer",
         alignItems: "center",
     },
-    textAreaStyle: {
-        height: 10000
+    iconStyle: {
+        color: (theme) => theme.palette.primary.main,
+        margin: 0.5
+    },
+    btnStyle: {
+        width: 80,
+        marginLeft: 5
     }
 }
 
@@ -48,10 +60,28 @@ export default function ClassAnnouncement() {
                                 value={inputValue}
                                 onChange={(e) => setInputValue(e.target.value)}
                                 fullWidth
-                                inputProps={{
-                                    sx: style.textAreaStyle
-                              }}
+                                minRows={5}
                             />
+                            <Box sx={{ marginTop: 2 }} container component={Grid} justifyContent="space-between">
+                                <Grid item>
+                                    <IconButton sx={style.iconStyle}>
+                                        <AddToDriveIcon />
+                                    </IconButton>
+                                    <IconButton sx={style.iconStyle}>
+                                        <FileUploadIcon />
+                                    </IconButton>
+                                    <IconButton sx={style.iconStyle}>
+                                        <InsertLinkIcon />
+                                    </IconButton>
+                                    <IconButton sx={style.iconStyle}>
+                                        <YouTubeIcon />
+                                    </IconButton>
+                                </Grid>
+                                <Grid item sx={{ marginTop: 0.5 }}>
+                                    <Button style={style.btnStyle} onClick={ () => setShowInput(false)}> cancel</Button>
+                                    <Button variant="contained" disabled={inputValue ? false : true} style={style.btnStyle}> Post</Button>
+                                </Grid>
+                            </Box>
                         </Grid>
                     ) : (
                         <Grid container sx={style.main}
@@ -62,13 +92,7 @@ export default function ClassAnnouncement() {
                         </Grid>
                     )}
                 </Grid>
-                <Grid container justifyContent="center" sx={{ marginTop: 4, borderRadius: 30 }}>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                    >Announce</Button>
-                </Grid>
             </Box>
-        </Classdrawer>
+        </Classdrawer >
     )
 }
