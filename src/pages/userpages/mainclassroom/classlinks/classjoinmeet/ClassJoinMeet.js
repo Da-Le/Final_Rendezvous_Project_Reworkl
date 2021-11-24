@@ -15,7 +15,8 @@ const style = {
     gridcontainer: {
         display: "flex",
         padding: 2,
-        marginTop: 1
+        marginTop: 1,
+        maxWidth: 900,
     },
     btnStyle: {
         width: 60,
@@ -27,16 +28,16 @@ const style = {
 export default function ClassJoinMeet() {
     return (
         <Classdrawer>
-            <Box component={Grid} container justifyContent="flex-start" sx={{ padding: 5 }}>
-                <Grid container justifyContent="center" alignItems="center" sx={{ marginTop: 10}}>
-                    <Grid container justifyContent="flex-start" alignItems="center">
+            <Box component={Grid} container justifyContent="center" sx={{ paddingTop: 10 }}>
+                <Grid>
+                    <Grid container justifyContent="center">
                         <Grid container Z>
                             <Typography variant="h6" >
                                 Classroom meeting
                             </Typography>
                         </Grid>
                     </Grid>
-                    <Grid container justifyContent="flex-start" alignItems="center">
+                    <Grid container justifyContent="center">
                         <Grid container sx={style.gridcontainer} justify='space-between'>
                             <Grid container justifyContent="space-between" spacing={5}>
                                 <Grid item sm={6}>
