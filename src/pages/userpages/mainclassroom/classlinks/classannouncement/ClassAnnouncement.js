@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import {
     Typography,
@@ -16,7 +16,6 @@ import AddToDriveIcon from '@mui/icons-material/AddToDrive';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import InsertLinkIcon from '@mui/icons-material/InsertLink';
 import YouTubeIcon from '@mui/icons-material/YouTube';
-import { getClassroomData } from '../../../../../redux/actions/classAction';
 
 const style = {
     gridcontainer: {

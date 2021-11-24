@@ -28,7 +28,7 @@ import { db } from '../../../utils/firebase';
 import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
 
-import { classroomData, getClassroomData, toggleClassroomData } from '../../../redux/actions/classAction'
+import {  toggleClassroomData } from '../../../redux/actions/classAction'
 
 const drawerWidth = 80;
 

@@ -24,7 +24,6 @@ import { Link } from 'react-router-dom'
 
 //Material Icons
 import AnnouncementIcon from '@mui/icons-material/Announcement';
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import DuoIcon from '@mui/icons-material/Duo';
 import PeopleIcon from '@mui/icons-material/People';
@@ -119,7 +118,7 @@ export default function MiniDrawer({ children }) {
         if (classUser) {
             setLoading(false);
         }
-    }, [])
+    }, [classUser])
 
     console.log(classUser);
 
@@ -174,18 +173,10 @@ export default function MiniDrawer({ children }) {
                     <ListItem
                         button
                         component={Link}
-                        to={`/classactivity/${classUser.classData.classCode}`}
-                    >
-                        <ListItemIcon> <FormatListBulletedIcon color="primary" /></ListItemIcon>
-                        <ListItemText>Activities/Laboratory</ListItemText>
-                    </ListItem>
-                    <ListItem
-                        button
-                        component={Link}
-                        to={`/classquizexam/${classUser.classData.classCode}`}
+                        to={`/classwork/${classUser.classData.classCode}`}
                     >
                         <ListItemIcon> <AssessmentIcon color="primary" /></ListItemIcon>
-                        <ListItemText>Quizzes/Exams</ListItemText>
+                        <ListItemText>Classwork</ListItemText>
                     </ListItem>
                     <ListItem
                         button

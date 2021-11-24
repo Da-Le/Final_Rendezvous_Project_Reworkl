@@ -28,16 +28,11 @@ import DashboardAbout from '../pages/userpages/dashboardabout/DashboardAbout';
 
 //main classroom
 import ClassAnnouncement from '../pages/userpages/mainclassroom/classlinks/classannouncement/ClassAnnouncement';
-import ClassActivity from '../pages/userpages/mainclassroom/classlinks/classactivity/ClassActivity';
-import ClassCreateActivity from '../pages/userpages/mainclassroom/classlinks/classactivity/ClassCreateActivity';
-import ClassAssignActivity from '../pages/userpages/mainclassroom/classlinks/classactivity/ClassAssignAcitivity';
 import ClassJoinMeet from '../pages/userpages/mainclassroom/classlinks/classjoinmeet/ClassJoinMeet';
 import ClassPeople from '../pages/userpages/mainclassroom/classlinks/classpeople/ClassPeople';
-import ClassQuizExam from '../pages/userpages/mainclassroom/classlinks/classquizexam/ClassQuizExam';
-import ClassCreateQuizExam from '../pages/userpages/mainclassroom/classlinks/classquizexam/ClassCreateQuizExam';
-import ClassAssignQuizExam from '../pages/userpages/mainclassroom/classlinks/classquizexam/ClassAssignQuizExam';
 import ClassSetting from '../pages/userpages/mainclassroom/classlinks/classsetting/ClassSetting';
-import { toggleClassroomData, getClassroomData } from '../redux/actions/classAction';
+import { getClassroomData } from '../redux/actions/classAction';
+import ClassWork from '../pages/userpages/mainclassroom/classlinks/classwork/ClassWork';
 
 export default function RouterComponent() {
 
@@ -82,15 +77,10 @@ export default function RouterComponent() {
 
                     {/* mainclassroom */}
                     <Route component={ClassAnnouncement} path="/classannouncement/:id" exact />
-                    <Route component={ClassActivity} path="/classactivity/:id" exact />
-                    <Route component={ClassAssignActivity} path="/classassignactivity/:id" exact />
-                    <Route component={ClassCreateActivity} path="/classcreateactivity/:id" exact />
                     <Route component={ClassJoinMeet} path="/classjoinmeet/:id" exact />
                     <Route component={ClassPeople} path="/classpeople/:id" exact />
-                    <Route component={ClassQuizExam} path="/classquizexam/:id" exact />
-                    <Route component={ClassAssignQuizExam} path="/classassignquizexam/:id" exact />
-                    <Route component={ClassCreateQuizExam} path="/classcreatequizexam/:id" exact />
                     <Route component={ClassSetting} path="/classsetting/:id" exact />
+                    <Route component={ClassWork} path="/classwork/:id" exact />
                 </Switch>
             </Router>
         </ThemeProvider>
