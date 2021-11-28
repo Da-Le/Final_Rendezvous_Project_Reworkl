@@ -31,7 +31,7 @@ export default function ClassJoinMeet() {
             <Box component={Grid} container justifyContent="center" sx={{ paddingTop: 10 }}>
                 <Grid>
                     <Grid container justifyContent="center">
-                        <Grid container Z>
+                        <Grid container>
                             <Typography variant="h6" >
                                 Classroom meeting
                             </Typography>
