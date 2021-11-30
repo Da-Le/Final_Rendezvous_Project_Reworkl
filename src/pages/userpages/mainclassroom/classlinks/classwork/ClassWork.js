@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
     Typography,
@@ -17,7 +17,12 @@ import Fade from '@mui/material/Fade';
 import Divider from '@mui/material/Divider';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import AddToDriveIcon from '@mui/icons-material/AddToDrive';
-import bgImage from '../../../../../assets/img/jpg/animatedcomputer.jpg'
+import bgImage from '../../../../../assets/img/jpg/animatedcomputer.jpg';
+
+import CreateActivityDialog from './CreateActivityDialog';
+import CreateQuizDialog from './CreateQuizDialog';
+import CreateExamDialog from './CreateExamDialog';
+import CreateLabDialog from './CreateLabDialog';
 
 const style = {
     gridcontainer: {
@@ -71,9 +76,6 @@ const style = {
     }
 }
 
-
-
-
 export default function ClassWork() {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -87,6 +89,38 @@ export default function ClassWork() {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    //Create Activity Dialog
+    const [createActivityOpen, setCreateActivityOpen] = useState(false);
+
+    const handleCreateActivityOpen = () => {
+        handleClose();
+        setCreateActivityOpen(!createActivityOpen);
+    }
+
+    //Create Lab Dialog
+    const [createLabOpen, setCreateLabOpen] = useState(false);
+
+    const handleCreateLabOpen = () => {
+        handleClose();
+        setCreateLabOpen(!createLabOpen);
+    }
+
+    //Create Quiz Dialog
+    const [createQuizOpen, setCreateQuizOpen] = useState(false);
+
+    const handleCreateQuizOpen = () => {
+        handleClose();
+        setCreateQuizOpen(!createQuizOpen);
+    }
+
+    //Create Exam Dialog
+    const [createExamOpen, setCreateExamOpen] = useState(false);
+
+    const handleCreateExamOpen = () => {
+        handleClose();
+        setCreateExamOpen(!createExamOpen);
+    }
 
     return (
         <Classdrawer>
@@ -112,26 +146,26 @@ export default function ClassWork() {
                             TransitionComponent={Fade}
                             sx={{ marginTop: 1 }}
                         >
-                            <MenuItem onClick={handleClose} >
+                            <MenuItem onClick={handleCreateActivityOpen} >
                                 <AssignmentIcon />
                                 <Typography sx={style.textStyle}>
                                     Activity
                                 </Typography>
                             </MenuItem>
-                            <MenuItem onClick={handleClose} >
+                            <MenuItem onClick={handleCreateLabOpen} >
                                 <AssignmentIcon />
                                 <Typography sx={style.textStyle}>
                                     Laboratory
                                 </Typography>
                             </MenuItem>
-                            <MenuItem onClick={handleClose}>
+                            <MenuItem onClick={handleCreateQuizOpen}>
                                 <AssignmentIcon />
                                 <Typography sx={style.textStyle}>
                                     Quiz
                                 </Typography>
                             </MenuItem>
                             <Divider />
-                            <MenuItem onClick={handleClose}>
+                            <MenuItem onClick={handleCreateExamOpen}>
                                 <AssignmentIcon />
                                 <Typography sx={style.textStyle}>
                                     Exam
@@ -173,6 +207,22 @@ export default function ClassWork() {
                     </Typography>
                 </Box>
             </Box>
+            <CreateActivityDialog
+                isCreateActivityOpen={createActivityOpen}
+                toggleCreateActivity={handleCreateActivityOpen}
+            />
+            <CreateLabDialog
+                isCreateLabOpen={createLabOpen}
+                toggleCreateLab={handleCreateLabOpen}
+            />
+            <CreateQuizDialog
+                isCreateQuizOpen={createQuizOpen}
+                toggleCreateQuiz={handleCreateQuizOpen}
+            />
+            <CreateExamDialog
+                isCreateExamOpen={createExamOpen}
+                toggleCreateExam={handleCreateExamOpen}
+            />
         </Classdrawer >
     )
 }

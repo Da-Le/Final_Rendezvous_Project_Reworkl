@@ -55,7 +55,6 @@ export default function ClassAnnouncement() {
                             <TextField
                                 variant="filled"
                                 multiline
-                                label="Announce Something to the class"
                                 value={inputValue}
                                 onChange={(e) => setInputValue(e.target.value)}
                                 fullWidth
